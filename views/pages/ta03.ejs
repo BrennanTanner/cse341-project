@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <% include ../includes/header.ejs %>
+   </head>
+
+   <body>
+      <% include ../includes/nav.ejs %>
+      <div class="jumbotron text-center">
+         <div class="container">
+            <h1><%= title %></h1>
+
+            <form action="/ta03/search" method="post">
+              <input type="text" id="search" name="search">
+              <input type="submit" value="search"
+              style="color: #0065bd">
+            </form>
+
+            <%for (var i=0; i <= datalist.length-1; i++) { %>
+            <div
+               id="card"
+               style="
+               padding: 15px;
+               margin: 15px;
+               background-color: aliceblue; border-radius: 15px"
+            >
+               <h2 style="color: #0065bd"><%= datalist[i].name%></h2>
+               <img src="<%= datalist[i].imageUrl%>" height="200px" />
+               <h3 style="font-style: italic; color: red">
+                  $<%= datalist[i].price%>
+               </h3>
+               <p style="color: #0065bd">
+                  Description: <%= datalist[i].description%>
+               </p>
+            </div>
+            <% }%>
+         </div>
+      </div>
+      <div class="container"></div>
+   </body>
+</html>
