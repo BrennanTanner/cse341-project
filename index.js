@@ -8,12 +8,13 @@ const mongoose = require('mongoose');
 
 const PORT = process.env.PORT || 5000; // So we can run on heroku || (OR) localhost:5000
 
+
 const app = express();
 
 const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://btanner15:Onyxst1nks15@cse341.inj88.mongodb.net/CSE341?retryWrites=true&w=majority";
 
 const corsOptions = {
-    origin: "https://brennan-tanner-store.herokuapp.com/",
+    origin: "https://btanner-store.herokuapp.com/",
     optionsSuccessStatus: 200
 };
 
@@ -31,7 +32,7 @@ mongoose
     MONGODB_URL, options
   )
   .then(result => {
-    app.listen(PORT);
+    app.listen(PORT, () => console.log(`Listening on ${PORT}`));
   })
   .catch(err => {
     console.log(err);
@@ -47,11 +48,7 @@ app
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  // For view engine as Pug
-  //.set('view engine', 'pug') // For view engine as PUG.
-  // For view engine as hbs (Handlebars)
-  //.engine('hbs', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout', extname: 'hbs'})) // For handlebars
-  //.set('view engine', 'hbs')
+
   .use(bodyParser.urlencoded({
     extended: true
   }))
@@ -71,4 +68,4 @@ app
     // 404 page
     res.render('pages/404', { title: '404 - Page Not Found', path: req.url });
   })
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+

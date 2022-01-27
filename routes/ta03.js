@@ -12,7 +12,6 @@ let datalist = [];
   try {
     let response = await fetch(url)
     datalist = await response.json();
-    console.log(datalist[0].name);
   } catch (error) {
     console.log('error');
   }
