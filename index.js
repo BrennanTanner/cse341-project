@@ -23,10 +23,7 @@ app.use(cors(corsOptions));
 const options = {
     family: 4
 };
-
-
-            
-
+       
 mongoose
   .connect(
     MONGODB_URL, options
